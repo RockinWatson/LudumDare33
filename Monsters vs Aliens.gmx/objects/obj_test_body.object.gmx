@@ -108,7 +108,7 @@ if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
 
 //----Jump-----//
 if (place_meeting(x,y+1,obj_ground_collision)) {
-    if (jumps == 0 or jumps ==1){
+    if (jumps &lt;=1){
         audio_play_sound(snd_land, 10, false);
     }
        //----Crouching----//
@@ -131,7 +131,6 @@ if (global.key_jump) &amp;&amp; (jumps &gt; 0) {
     vsp = -jumpspeed;
 }
 
-
 //----horizontal collision-----//
 if (place_meeting(x+hsp,y,obj_ground_collision)){
     while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
@@ -143,7 +142,6 @@ if (place_meeting(x+hsp,y,obj_ground_collision)){
     }
 }
 x += hsp;
-
 
 //----vertical collision----//
 if (place_meeting(x,y+vsp,obj_ground_collision)){
