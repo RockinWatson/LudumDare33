@@ -155,12 +155,6 @@
     <objects name="Bosses">
       <object>objects\obj_boss_1_body</object>
     </objects>
-    <objects name="Backgrounds">
-      <object>objects\obj_bg_1</object>
-      <object>objects\obj_bg_2</object>
-      <object>objects\obj_bg_3</object>
-      <object>objects\obj_bg_platforms</object>
-    </objects>
     <objects name="Bullets">
       <object>objects\obj_bullet</object>
       <object>objects\obj_bullet_charge</object>
