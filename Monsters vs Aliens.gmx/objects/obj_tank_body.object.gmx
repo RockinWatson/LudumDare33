@@ -7,7 +7,234 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//----Create Event----
+grav = 0.45;
+hsp = 0;
+vsp = 0;
+movespeed = 10;
+tank_hp = 5;
+walking_sound = true;
+walking = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.player_damage=false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>walking_sound = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>walking = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//----movement----//
+hsp = movespeed;
+if (vsp &lt; 10) vsp += grav;
+
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+}
+
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
+//----Move Toward Player----//
+if (walking == true) {
+    mp_potential_step (obj_test_body.x, obj_test_body.y, 100, false);
+    walking = false;
+    alarm[0] = 45;
+}
+
+//----Moving Sound----//
+if (walking_sound == true){
+    audio_play_sound(snd_tank_walk, 1, false);
+    walking_sound = false;
+    alarm[1] = 45;
+}
+
+
+//----Attack Player----//
+if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
+audio_play_sound(snd_self_hit, 1, false);
+global.player_damage=true;
+alarm[2] = 40;
+}
+
+//----Shooting----//
+//player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
+
+if (random_range (1, 100) &lt;=1.5){
+    bullet = instance_create(x,y-100, obj_tank_bullet)
+
+/*
+if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
+    //shoot straight up
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction += 90;
+} else if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
+    //shoot at a 45 degree angle to the right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction += 45;
+} else if (player_direction &lt; 22.5 and player_direction &gt; 0){
+    //shoot right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 0
+} else if (player_direction &gt;270 and player_direction &lt;= 359){
+    //shoot right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 0
+} else if (player_direction &lt; 270 and player_direction &gt;157.5) {
+    //shoot left
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 180;
+} else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
+    //shoot at a 45 degree angle to the left
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 135;
+}
+*/
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bullet">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>tank_hp -= 1;
+audio_play_sound(snd_enemy_hit, 0, false);
+if (tank_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_enemy_death, 1, false);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
