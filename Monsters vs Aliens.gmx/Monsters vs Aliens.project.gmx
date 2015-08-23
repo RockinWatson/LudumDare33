@@ -79,6 +79,7 @@
     <sprites name="Monsters">
       <sprite>sprites\sprt_test_body</sprite>
       <sprite>sprites\sprt_monster_crouch</sprite>
+      <sprite>sprites\sprite35</sprite>
     </sprites>
     <sprites name="Backgrounds">
       <sprite>sprites\sprt_bg_1</sprite>
@@ -185,8 +186,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test_1</room>
     <room>rooms\rm_lvl_mars</room>
+    <room>rooms\rm_test_1</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>

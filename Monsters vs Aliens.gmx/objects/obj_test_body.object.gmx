@@ -159,7 +159,7 @@ if (place_meeting(x,y+vsp,obj_ground_collision)){
 y += vsp;
 
 
-//----Player Shooting----//
+//----Player Shooting &amp;&amp; Direction----//
 mouse_direction = point_direction(x,y,mouse_x,mouse_y);
 
 if (global.key_fire and (mouse_direction &lt; 112.5 and mouse_direction &gt; 67.5))  {
@@ -193,6 +193,24 @@ if (global.key_fire and (mouse_direction &lt; 112.5 and mouse_direction &gt; 67.
     audio_play_sound(snd_laser, 1, false);
     bullet.direction = 135;
 }
+
+//----Parallax Background----//
+if (room == rm_lvl_mars){
+    //X values
+    background_x[1] = view_xview[0]/2;
+    background_x[2] = view_xview[0]/2.5;
+    background_x[3] = view_xview[0]/3;
+    background_x[4] = view_xview[0]/4;
+    
+    //Y values
+    background_y[3] = view_yview[0]/3;
+    background_y[4] = view_yview[0]/4;
+}
+
+
+
+
+
 
 </string>
           </argument>
