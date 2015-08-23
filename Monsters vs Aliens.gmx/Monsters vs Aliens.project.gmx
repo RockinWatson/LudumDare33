@@ -123,6 +123,14 @@
     <background>background\bg_test_3</background>
     <background>background\bg_test_level_platform</background>
     <background>background\bg_lvl_mars</background>
+    <backgrounds name="Mars">
+      <background>background\bg_mars_main_color</background>
+      <background>background\bg_mars_plx_1</background>
+      <background>background\bg_mars_plx_2</background>
+      <background>background\bg_mars_plx_3</background>
+      <background>background\bg_mars_plx_4</background>
+      <background>background\bg_mars_platforms</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -176,8 +184,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test_1</room>
     <room>rooms\rm_lvl_mars</room>
+    <room>rooms\rm_test_1</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>

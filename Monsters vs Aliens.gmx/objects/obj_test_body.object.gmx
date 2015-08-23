@@ -99,9 +99,9 @@ if ((move or -move) and walking_sound == true){
     audio_play_sound(snd_run, 1, false);
     walking_sound = false;
     alarm[0] = 10;
-} 
+}
 //stop running_sound if in Air
-if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
+if (!place_meeting (x,y+1,obj_ground_collision) or (global.key_crouch) and audio_is_playing (snd_run)){
     audio_stop_sound(snd_run);    
 }
 
@@ -112,23 +112,26 @@ if (place_meeting(x,y+1,obj_ground_collision)) {
     if (jumps &lt;=1){
         audio_play_sound(snd_land, 10, false);
     }
-    if (global.key_crouch){
-        jumps = 0;
-    }
 }
-//reset jump
-if (global.key_jump) &amp;&amp; (jumps &gt; 0) {
+//double jump
+if (global.key_jump) and (jumps &gt; 0) {
     audio_play_sound(snd_jump, 1, false);
     jumps -=1;
     vsp = -jumpspeed;
+} else if (global.key_crouch and global.key_jump){
+    
 }
 
+
 //----Crouching----//
-if (global.key_crouch and place_meeting(x,y+1,obj_ground_collision)){
+if ((global.key_crouch) or (global.key_left and global.key_crouch) or (global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
     sprite_index = sprt_monster_crouch;
-    jumps = 0;
-}else if (global.key_stand){
+    movespeed =0;
+    jumpspeed =0;
+} else if (global.key_stand){
     sprite_index = sprt_test_body;
+    movespeed = 12;
+    jumpsped = 15;
 }
 
 
@@ -143,6 +146,7 @@ if (place_meeting(x+hsp,y,obj_ground_collision)){
     }
 }
 x += hsp;
+
 
 //----vertical collision----//
 if (place_meeting(x,y+vsp,obj_ground_collision)){
