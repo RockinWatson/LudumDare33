@@ -47,6 +47,10 @@
       <sounds name="Levels">
         <sound>sound\music_level_1</sound>
         <sound>sound\music_level_2</sound>
+        <sound>sound\music_level_3</sound>
+      </sounds>
+      <sounds name="Misc">
+        <sound>sound\Level_Select</sound>
       </sounds>
     </sounds>
   </sounds>
