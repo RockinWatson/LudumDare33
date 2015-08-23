@@ -62,16 +62,33 @@
     <instance objName="obj_ground_collision" x="-70" y="2558" name="inst_05082E3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="1850" y="2688" name="inst_530CC36D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="-70" y="2688" name="inst_BEBB34E2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_test_body" x="798" y="2396" name="inst_A17087F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_test_body" x="798" y="2412" name="inst_A17087F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="1514" y="2936" name="inst_19647491" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="1906" y="2938" name="inst_B97AB289" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="520" y="2934" name="inst_BFC0D573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_alien_melee_body" x="3036" y="2822" name="inst_CEFB0CE8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="2990" y="2932" name="inst_CEFB0CE8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_controller_mars" x="628" y="2952" name="inst_9D08ECF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_shooter_body" x="3616" y="2932" name="inst_FC8B3A5A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_shooter_body" x="274" y="2408" name="inst_09574ADF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tank_body" x="2194" y="2306" name="inst_BD730A14" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_ufo" x="714" y="1758" name="inst_EE407B35" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_ufo" x="1464" y="1912" name="inst_51820A0F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_main_controller" x="288" y="744" name="inst_E77245D4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="1350" y="2406" name="inst_3903A8E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="1564" y="2414" name="inst_12109887" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="1132" y="2396" name="inst_9B36C7FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="1766" y="2414" name="inst_03EEAB2C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="110" y="2410" name="inst_EC0BF65F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="422" y="2418" name="inst_7B8579BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="568" y="2398" name="inst_691112F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_ufo" x="2556" y="1764" name="inst_BA78232B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tank_body" x="3614" y="1658" name="inst_FEC868C8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tank_body" x="4348" y="2774" name="inst_ED9F8A58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="1126" y="2940" name="inst_98E489C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="2472" y="2936" name="inst_A365FC5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="3234" y="2938" name="inst_EA4658AE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="4830" y="2910" name="inst_7BDC4656" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="5308" y="2916" name="inst_C989A8BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
