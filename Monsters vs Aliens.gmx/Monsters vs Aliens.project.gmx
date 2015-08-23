@@ -171,11 +171,13 @@
     </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_mars</object>
+      <object>objects\obj_controller_venus</object>
+      <object>objects\obj_controller_saturn</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_1</room>
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>

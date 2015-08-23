@@ -97,7 +97,10 @@ if (place_meeting(x,y+vsp,obj_ground_collision)){
 y += vsp;
 
 //----Move To Player----//
-mp_potential_step (obj_test_body.x, obj_test_body.y, 8, false);
+if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 75 {
+    mp_potential_step (obj_test_body.x, obj_test_body.y, 10, false);
+}
+
 
 //----Attack Player----//
 if (place_meeting(x,y,obj_test_body) and global.player_damage==false){

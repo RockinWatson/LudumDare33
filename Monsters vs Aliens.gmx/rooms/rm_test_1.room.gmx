@@ -68,7 +68,7 @@
     <instance objName="obj_alien_melee_body" x="486" y="2870" name="inst_BFC0D573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="3036" y="2822" name="inst_CEFB0CE8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_controller_mars" x="628" y="2952" name="inst_9D08ECF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_alien_shooter_body" x="2490" y="2910" name="inst_FC8B3A5A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="3616" y="2932" name="inst_FC8B3A5A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_shooter_body" x="266" y="2914" name="inst_09574ADF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
