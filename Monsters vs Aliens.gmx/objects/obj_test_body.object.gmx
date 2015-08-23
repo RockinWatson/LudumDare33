@@ -30,8 +30,8 @@
 grav = 0.45;
 hsp = 0;
 vsp = 0;
-jumpspeed = 12;
-movespeed = 10;
+jumpspeed = 15;
+movespeed = 12;
 walking_sound = true;
 jumps = 0;
 jumpsmax = 2;
@@ -163,37 +163,31 @@ if (global.key_fire and (mouse_direction &lt; 112.5 and mouse_direction &gt; 67.
     bullet = instance_create(x,y-80, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction += 90;
-    bullet.speed = 15;
 } else if (global.key_fire and (mouse_direction &lt; 67.5 and mouse_direction &gt; 22.5)){
     //shoot at a 45 degree angle right
     bullet = instance_create(x,y, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction += 45;
-    bullet.speed = 15;
 } else if (global.key_fire and (mouse_direction &lt; 22.5 and mouse_direction &gt; 0)){
     //shoot right when mouse is inbetween 22.5 and 0
     bullet = instance_create(x,y, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction = 0;
-    bullet.speed = 15;
 } else if (global.key_fire and (mouse_direction &gt; 270 and mouse_direction &lt;= 359)){
     //shoot right when mouse is inbetween 270 and 359
     bullet = instance_create(x,y, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction = 0;
-    bullet.speed = 15;
 } else if (global.key_fire and (mouse_direction &lt; 270 and mouse_direction &gt; 157.5)){
     //shoot left when mouse is inbetween 270 and 157.5
     bullet = instance_create(x,y, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction = 180;
-    bullet.speed = 15;
 } else if (global.key_fire and (mouse_direction &lt; 157.5 and mouse_direction &gt; 112.5)){
     //shoot 45 angle left when mouse is inbetween 157.5 and 112.5
     bullet = instance_create(x,y, obj_bullet);
     audio_play_sound(snd_laser, 1, false);
     bullet.direction = 135;
-    bullet.speed = 15;
 }
 
 </string>
