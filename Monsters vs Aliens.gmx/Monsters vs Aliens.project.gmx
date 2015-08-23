@@ -120,6 +120,10 @@
     <sprites name="Collision">
       <sprite>sprites\sprt_ground</sprite>
     </sprites>
+    <sprites name="Pickups">
+      <sprite>sprites\sprt_pickup_charge</sprite>
+      <sprite>sprites\sprt_pickup_health</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_test_1</background>
@@ -182,6 +186,11 @@
       <object>objects\obj_controller_mars</object>
       <object>objects\obj_controller_venus</object>
       <object>objects\obj_controller_saturn</object>
+      <object>objects\obj_main_controller</object>
+    </objects>
+    <objects name="Pickups">
+      <object>objects\obj_pickup_health</object>
+      <object>objects\obj_pickup_charge</object>
     </objects>
   </objects>
   <rooms name="rooms">

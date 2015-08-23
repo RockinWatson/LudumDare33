@@ -167,6 +167,12 @@ audio_play_sound(snd_enemy_hit, 0, false);
 if (shooter_hp &lt;= 0){
     instance_destroy();
     audio_play_sound(snd_enemy_death, 1, false);
+        if (global.random_item_drop  &gt; 17){
+            instance_create(self.x,self.y,obj_pickup_health);
+            }
+        else if (global.random_item_drop &lt; 3){
+            instance_create(self.x,self.y,obj_pickup_charge)
+        }
 }
 </string>
           </argument>
