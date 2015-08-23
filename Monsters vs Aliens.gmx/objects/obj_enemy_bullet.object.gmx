@@ -26,11 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>//----Directional Shooting----//
-direction = point_direction(x,y, obj_test_body.x, obj_test_body.y);
-speed = 5;
+speed = 30;
 
 //----Shooting Sound----//
 audio_play_sound(snd_enemy_shoot, 1, false);
+
+
 </string>
           </argument>
         </arguments>

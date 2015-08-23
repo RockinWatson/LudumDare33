@@ -35,6 +35,29 @@ movespeed = 10;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.player_damage=false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -77,7 +100,39 @@ y += vsp;
 if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
 audio_play_sound(snd_self_hit, 1, false);
 global.player_damage=true;
-alarm[1] = 40;
+alarm[2] = 40;
+}
+
+//----Shooting----//
+player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
+
+if (random_range (1, 100) &lt;=1.5){
+
+if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
+    //shoot straight up
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction += 90;
+} else if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
+    //shoot at a 45 degree angle to the right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction += 45;
+} else if (player_direction &lt; 22.5 and player_direction &gt; 0){
+    //shoot right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 0
+} else if (player_direction &gt;270 and player_direction &lt;= 359){
+    //shoot right
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 0
+} else if (player_direction &lt; 270 and player_direction &gt;157.5) {
+    //shoot left
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 180;
+} else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
+    //shoot at a 45 degree angle to the left
+    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet.direction = 135;
+}
 }
 </string>
           </argument>
