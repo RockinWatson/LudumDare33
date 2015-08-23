@@ -28,10 +28,8 @@
             <string>//----Global Variables----//
 global.player_damage = false;
 
-//if (!audio_exists(music_level_1))
-//{
-   // audio_play_sound (music_level_1, 10, true);
-//}
+//audio_play_sound (music_level_3, 10, true);
+
 </string>
           </argument>
         </arguments>
