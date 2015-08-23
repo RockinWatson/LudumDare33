@@ -108,21 +108,13 @@ if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
 
 //----Jump-----//
 if (place_meeting(x,y+1,obj_ground_collision)) {
+    jumps = jumpsmax;
     if (jumps &lt;=1){
         audio_play_sound(snd_land, 10, false);
     }
-       //----Crouching----//
     if (global.key_crouch){
-        sprite_index = sprt_monster_crouch;
         jumps = 0;
-        if (global.key_right or global.key_left){
-            hsp = 0;
-        }
     }
-    if (global.key_stand){
-        sprite_index = sprt_test_body;
-    }
-    jumps = jumpsmax;
 }
 //reset jump
 if (global.key_jump) &amp;&amp; (jumps &gt; 0) {
@@ -130,6 +122,15 @@ if (global.key_jump) &amp;&amp; (jumps &gt; 0) {
     jumps -=1;
     vsp = -jumpspeed;
 }
+
+//----Crouching----//
+if (global.key_crouch and place_meeting(x,y+1,obj_ground_collision)){
+    sprite_index = sprt_monster_crouch;
+    jumps = 0;
+}else if (global.key_stand){
+    sprite_index = sprt_test_body;
+}
+
 
 //----horizontal collision-----//
 if (place_meeting(x+hsp,y,obj_ground_collision)){
