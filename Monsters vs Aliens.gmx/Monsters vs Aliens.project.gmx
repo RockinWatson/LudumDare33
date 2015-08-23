@@ -33,6 +33,8 @@
         <sound>sound\snd_turret_throw</sound>
         <sound>sound\snd_turret_land</sound>
         <sound>sound\snd_turret_shoot</sound>
+        <sound>sound\snd_tank_shoot</sound>
+        <sound>sound\snd_tank_walk</sound>
       </sounds>
       <sounds name="Movement">
         <sound>sound\snd_ufo</sound>
@@ -95,6 +97,8 @@
     <sprites name="Bullets">
       <sprite>sprites\sprt_bullet</sprite>
       <sprite>sprites\sprt_enemy_bullet</sprite>
+      <sprite>sprites\sprt_ufo_bullet</sprite>
+      <sprite>sprites\sprt_tank_bullet</sprite>
       <sprite>sprites\sprt_bullet_chargeShot</sprite>
     </sprites>
     <sprites name="Meters">
@@ -147,6 +151,7 @@
       </objects>
       <objects name="TurretMan">
         <object>objects\obj_turretman_arm</object>
+        <object>objects\obj_turretman_body</object>
       </objects>
     </objects>
     <objects name="Monsters">
@@ -159,6 +164,8 @@
       <object>objects\obj_bullet</object>
       <object>objects\obj_bullet_charge</object>
       <object>objects\obj_enemy_bullet</object>
+      <object>objects\obj_tank_bullet</object>
+      <object>objects\obj_ufo_bullet</object>
     </objects>
     <objects name="Meters">
       <objects name="Health">
@@ -178,8 +185,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_1</room>
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>
