@@ -101,9 +101,10 @@ if (place_meeting(x,y+vsp,obj_ground_collision)){
 y += vsp;
 
 //----Move Toward Player----//
-if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 750 {
-    mp_potential_step (obj_test_body.x, obj_test_body.y, 3, false);
-}
+if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 575 {
+    sprite_index = sprt_alien_shooter_running;
+    mp_potential_step (obj_test_body.x, obj_test_body.y, 4.5, false);
+} else sprite_index = sprt_alien_shooter_body;
 
 //----Attack Player----//
 if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
@@ -117,29 +118,36 @@ player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
 
 if (random_range (1, 100) &lt;=4){
 
-if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
+/*if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
     //shoot straight up
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    bullet = instance_create(x,y-20, obj_enemy_bullet);
     bullet.direction += 90;
-} else if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
+} else*/ 
+
+if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
     //shoot at a 45 degree angle to the right
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    image_xscale = -1;
+    bullet = instance_create(x+85,y, obj_enemy_bullet);
     bullet.direction += 45;
 } else if (player_direction &lt; 22.5 and player_direction &gt; 0){
     //shoot right
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    image_xscale = -1;
+    bullet = instance_create(x+85,y, obj_enemy_bullet);
     bullet.direction = 0
 } else if (player_direction &gt;270 and player_direction &lt;= 359){
     //shoot right
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    image_xscale = -1;
+    bullet = instance_create(x+85,y, obj_enemy_bullet);
     bullet.direction = 0
 } else if (player_direction &lt; 270 and player_direction &gt;157.5) {
     //shoot left
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    image_xscale = 1;
+    bullet = instance_create(x-85,y, obj_enemy_bullet);
     bullet.direction = 180;
 } else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
     //shoot at a 45 degree angle to the left
-    bullet = instance_create(x,y-80, obj_enemy_bullet);
+    image_xscale = 1;
+    bullet = instance_create(x-85,y, obj_enemy_bullet);
     bullet.direction = 135;
 }
 }

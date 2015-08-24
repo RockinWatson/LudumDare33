@@ -25,13 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//----Global Variables----//
+            <string>//----Music----//
+    audio_play_sound (music_level_1, 10, true);
 
-
-//if (!audio_exists(music_level_1))
-//{
-//    audio_play_sound (music_level_1, 10, true);
-//}
 </string>
           </argument>
         </arguments>

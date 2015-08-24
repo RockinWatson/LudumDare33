@@ -55,6 +55,11 @@ instance_activate_region(view_xview[0], view_yview, view_wview, view_hview, true
 
 //----Random Item Generator----//
 global.random_item_drop = random_range(1, 20);
+
+//----Restart Room----//
+if keyboard_check_pressed(ord("R")){
+    room_restart();
+}
 </string>
           </argument>
         </arguments>

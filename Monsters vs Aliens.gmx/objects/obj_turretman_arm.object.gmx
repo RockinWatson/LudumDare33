@@ -27,11 +27,14 @@
             <kind>1</kind>
             <string>//----Create Event----//
 grav = 0.45;
-turret_hp = 3;
+hsp = 0;
+vsp = 0;
+movespeed = 10;
+turret_hp = 2;
 can_shoot = true;
 
 //----Deactivate----//
-instance_deactivate_object(obj_alien_shooter_body)
+instance_deactivate_object(obj_turretman_arm)
 </string>
           </argument>
         </arguments>
@@ -77,25 +80,67 @@ instance_deactivate_object(obj_alien_shooter_body)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//----Shooting----//
-/*
+            <string>//----Movement and Collision----//
+hsp = movespeed;
+if (vsp &lt; 10) vsp += grav;
+
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+}
+
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
+//----Shooting----//
+
 player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
 
 if (player_direction &lt; 90) and (can_shoot = true){
     //shoot right
-    image_xscale = -1;
-    bullet = instance_create(x+80,y, obj_enemy_bullet);
+    bullet = instance_create(x+80,y+7, obj_turret_bullet);
     bullet.direction = 0
     can_shoot = false;
-    alarm[3] = 30;
+    alarm[3] = 100;
 } else if (player_direction &gt;90) and (can_shoot = true){
     //shoot left
-    image_xscale = 1;
-    bullet = instance_create(x-80,y, obj_enemy_bullet);
-    bullet.direction = 0
+    bullet = instance_create(x-80,y+7, obj_turret_bullet);
+    bullet.direction = 180
     can_shoot = false;
-    alarm[3]
+    alarm[3] = 100;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_test_body">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy();
 </string>
           </argument>
         </arguments>
