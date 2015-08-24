@@ -100,10 +100,20 @@ if (place_meeting(x,y+vsp,obj_ground_collision)){
 y += vsp;
 
 //----Move To Player----//
+if distance_to_point (obj_test_body.x, obj_test_body.y) &lt; 75 {
+hsp = 0;
+}
+else mp_potential_step (obj_test_body.x, obj_test_body.y, 10, false);
+if (direction &lt;90){
+    image_xscale = -1;
+} else image_xscale = 1;
+
+
+/*
 if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 75 {
     mp_potential_step (obj_test_body.x, obj_test_body.y, 10, false);
 }
-
+*/
 
 //----Attack Player----//
 if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
