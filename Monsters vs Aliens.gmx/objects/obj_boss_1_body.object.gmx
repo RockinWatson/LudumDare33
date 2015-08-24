@@ -30,9 +30,8 @@ grav = 0.45;
 hsp = 0;
 vsp = 0;
 movespeed = 3;
-boss_1_hp = 70;
-
-
+boss_1_hp = 50;
+boss_jump = false;
 </string>
           </argument>
         </arguments>
@@ -160,6 +159,8 @@ if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
 }
 }
 */
+
+
 </string>
           </argument>
         </arguments>

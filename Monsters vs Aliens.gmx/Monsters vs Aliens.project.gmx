@@ -52,11 +52,11 @@
     <sounds name="Music">
       <sounds name="Levels">
         <sound>sound\music_level_1</sound>
-        <sound>sound\music_level_2</sound>
-        <sound>sound\music_level_3</sound>
       </sounds>
       <sounds name="Misc">
-        <sound>sound\Level_Select</sound>
+        <sound>sound\music_story</sound>
+        <sound>sound\music_boss_fight</sound>
+        <sound>sound\music_title</sound>
       </sounds>
     </sounds>
   </sounds>
@@ -226,9 +226,9 @@
     </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_mars</object>
-      <object>objects\obj_controller_venus</object>
-      <object>objects\obj_controller_saturn</object>
       <object>objects\obj_main_controller</object>
+      <object>objects\obj_controller_title</object>
+      <object>objects\obj_controller_story</object>
     </objects>
     <objects name="Pickups">
       <object>objects\obj_pickup_health</object>
