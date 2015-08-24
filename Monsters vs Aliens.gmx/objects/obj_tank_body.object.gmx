@@ -209,6 +209,40 @@ if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_bullet_charge">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>tank_hp -= 3;
+audio_play_sound(snd_enemy_hit, 0, false);
+if (tank_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_enemy_death, 1, false);
+            if (global.random_item_drop  &gt; 17){
+            instance_create(self.x,self.y,obj_pickup_health);
+            }
+        else if (global.random_item_drop &lt; 3){
+            instance_create(self.x,self.y,obj_pickup_charge)
+        }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_bullet">
       <action>
         <libid>1</libid>

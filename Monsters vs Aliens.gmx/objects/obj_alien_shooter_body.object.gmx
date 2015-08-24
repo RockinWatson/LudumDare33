@@ -124,12 +124,13 @@ if (random_range (1, 100) &lt;=4){
     bullet.direction += 90;
 } else*/ 
 
-if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
+/*if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
     //shoot at a 45 degree angle to the right
     image_xscale = -1;
     bullet = instance_create(x+85,y, obj_enemy_bullet);
     bullet.direction += 45;
-} else if (player_direction &lt; 22.5 and player_direction &gt; 0){
+} else*/
+if (player_direction &lt; 22.5 and player_direction &gt; 0){
     //shoot right
     image_xscale = -1;
     bullet = instance_create(x+85,y, obj_enemy_bullet);
@@ -144,12 +145,46 @@ if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
     image_xscale = 1;
     bullet = instance_create(x-85,y, obj_enemy_bullet);
     bullet.direction = 180;
-} else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
+} /*else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
     //shoot at a 45 degree angle to the left
     image_xscale = 1;
     bullet = instance_create(x-85,y, obj_enemy_bullet);
     bullet.direction = 135;
+}*/
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bullet_charge">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>shooter_hp -= 3;
+audio_play_sound(snd_enemy_hit, 0, false);
+if (shooter_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_enemy_death, 1, false);
+        if (global.random_item_drop  &gt; 17){
+            instance_create(self.x,self.y,obj_pickup_health);
+            }
+        else if (global.random_item_drop &lt; 3){
+            instance_create(self.x,self.y,obj_pickup_charge)
+        }
 }
 </string>
           </argument>
