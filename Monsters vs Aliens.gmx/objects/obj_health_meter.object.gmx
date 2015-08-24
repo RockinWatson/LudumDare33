@@ -49,7 +49,11 @@ y=view_yview[0]+75;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.hp == 3){
+            <string>if (global.hp ==4){
+    sprite_index = sprt_health_meter_4;
+}
+
+if (global.hp == 3){
     sprite_index = sprt_health_meter_3;
 } else if (global.hp == 2){
     sprite_index = sprt_health_meter_2;

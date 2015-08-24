@@ -35,6 +35,30 @@ movespeed = 12;
 walking_sound = true;
 jumps = 0;
 jumpsmax = 2;
+canshoot = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="9">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canshoot = true;
 </string>
           </argument>
         </arguments>
@@ -86,8 +110,9 @@ global.key_right = keyboard_check(ord('D'));
 global.key_left = keyboard_check(ord('A'));
 global.key_jump = keyboard_check_pressed(vk_space);
 global.key_fire = mouse_check_button_pressed(mb_left);
+global.key_alt_fire = mouse_check_button_pressed(mb_right);
 global.key_up = keyboard_check(ord('W'));
-global.key_crouch = keyboard_check_pressed(vk_shift);
+//global.key_crouch = keyboard_check_pressed(vk_shift);
 global.key_stand = keyboard_check_released(vk_shift);
 mouse_direction = point_direction(x,y,mouse_x,mouse_y);
 grounded = place_meeting(x,y+1,obj_ground_collision);
@@ -161,7 +186,7 @@ if (grounded){
         sprite_index = sprt_drac_jump_aim_up;
     }
 }
-if (global.key_crouch) {
+/*if (global.key_crouch) {
     sprite_index = sprt_drac_crouch_aim_straight;
     movespeed =0;
     jumpspeed =0;
@@ -172,21 +197,40 @@ if (global.key_crouch) {
     movespeed = 12;
     jumpspeed = 15;
 }
-
+*/
 //Shooting
 if image_xscale == -1 {
-    if (global.key_fire){
-        bullet = instance_create(x,y, obj_bullet);
+    if (global.key_fire) and (canshoot = true){
+        canshoot = false;
+        alarm[9] = 10;
+        bullet = instance_create(x-90,y-12, obj_bullet);
         audio_play_sound(snd_laser, 1, false);
         bullet.direction = 180;
     }
 } else {
-    if (global.key_fire){
-        bullet = instance_create(x,y, obj_bullet);
+    if (global.key_fire) and (canshoot = true){
+        canshoot = false;
+        alarm[9] = 10;
+        bullet = instance_create(x+90,y-12, obj_bullet);
         audio_play_sound(snd_laser, 1, false);
         bullet.direction = 0;
     }
 }
+//Special Shooting
+if image_xscale == -1 {
+    if (global.key_alt_fire) and (global.charge &gt; 0){
+        bullet = instance_create(x-85,y-12, obj_bullet_charge);
+        audio_play_sound(snd_charge_shot, 1, false);
+        bullet.direction = 180;
+    }
+} else {
+    if (global.key_alt_fire) and (global.charge &gt; 0){
+        bullet = instance_create(x+85,y-12, obj_bullet_charge);
+        audio_play_sound(snd_charge_shot, 1, false);
+        bullet.direction = 0;
+    }
+}
+
 
 
 //----Parallax Background----//
@@ -203,6 +247,28 @@ if (room == rm_lvl_mars){
 }
 
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_alien_melee_body">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

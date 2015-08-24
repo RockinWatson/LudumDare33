@@ -29,6 +29,7 @@
     audio_stop_sound (music_story);
     audio_stop_sound (music_boss_fight);
     audio_stop_sound (music_title);
+    audio_stop_sound (music_level_1);
     audio_play_sound (music_level_1, 10, true);
     
     instance_create(view_xview[0] +100, view_yview[0] + 75, obj_health_meter)

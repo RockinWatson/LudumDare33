@@ -77,15 +77,29 @@
     <instance objName="obj_activate_boss" x="1712" y="690" name="inst_EDA158D4" locked="0" code="" scaleX="4.21875" scaleY="9" colour="4294967295" rotation="0"/>
     <instance objName="obj_activate_boss_sound" x="1632" y="620" name="inst_FE09DF88" locked="0" code="" scaleX="3.5625" scaleY="11.3125" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="2268" y="2008" name="inst_11185927" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_turretman_body_right" x="4648" y="2004" name="inst_8BC9DC0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_turretman_body_right" x="964" y="1526" name="inst_8BC9DC0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="2718" y="2684" name="inst_09C71288" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_alien_ufo" x="1494" y="1388" name="inst_7A49F777" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_ufo" x="400" y="1248" name="inst_7A49F777" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_ufo" x="4734" y="286" name="inst_EBA13AB0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_ufo" x="3530" y="460" name="inst_69453DC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_melee_body" x="468" y="1758" name="inst_FE9DC6D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_turretman_body_right" x="796" y="1336" name="inst_1E8DF562" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_alien_shooter_body" x="2566" y="1346" name="inst_59FB38BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tank_body" x="4288" y="998" name="inst_054B008F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_shooter_body" x="4304" y="2024" name="inst_9E43864C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="4760" y="2400" name="inst_BBBA0D17" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="5324" y="2400" name="inst_FCB285AE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_alien_melee_body" x="3342" y="1950" name="inst_1CCB3D9E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_health" x="2028" y="772" name="inst_C99A1903" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_health" x="2116" y="770" name="inst_5A5311F8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="2210" y="764" name="inst_31A9F5F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="2314" y="776" name="inst_2F799CBA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="1264" y="2748" name="inst_46A47604" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="372" y="2756" name="inst_B373DA7F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="754" y="2736" name="inst_549E44E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_charge" x="988" y="2758" name="inst_FF9E46B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_health" x="472" y="2832" name="inst_CCB2D02E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_health" x="1070" y="2858" name="inst_0C69EB79" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickup_health" x="1360" y="2812" name="inst_943FE8AA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

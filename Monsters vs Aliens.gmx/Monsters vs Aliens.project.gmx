@@ -20,6 +20,7 @@
         <sound>sound\snd_laser</sound>
         <sound>sound\snd_self_hit</sound>
         <sound>sound\snd_self_death</sound>
+        <sound>sound\snd_charge_shot</sound>
       </sounds>
       <sounds name="Misc">
         <sound>sound\snd_pickup</sound>
@@ -236,8 +237,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_mars_test</room>
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_1</room>
     <room>rooms\rm_test_2</room>
   </rooms>
