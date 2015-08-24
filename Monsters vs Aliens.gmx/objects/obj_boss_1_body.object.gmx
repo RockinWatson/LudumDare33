@@ -38,6 +38,29 @@ boss_1_hp = 70;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.player_damage=false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -86,19 +109,57 @@ if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 200 {
 if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
 audio_play_sound(snd_self_hit, 1, false);
 global.player_damage=true;
-alarm[1] = 40;
+alarm[2] = 40;
 }
 
 //----Random Sound When Hit----//
 random_boss_hit_sound = random_range(1, 15);
 
-//----Random Boss Burp----//
+//----Random Boss Burp UFO----//
 random_boss_burp = random_range(1, 300);
 
 if (random_boss_burp &lt;= 2.2){
     audio_play_sound(snd_boss_burp, 5, false);
-    instance_create(obj_boss_1_body.x+200,obj_boss_1_body.y,obj_alien_ufo);
+    instance_create(obj_boss_1_body.x+200,obj_boss_1_body.y+90,obj_alien_ufo);
 }
+
+//----Throw Hair----//
+//player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
+
+if (random_range (1, 100) &lt;=1.5){
+    bullet = instance_create(x,y-100, obj_boss_throw)
+    }
+
+/*if (random_range (1, 100) &lt;=4){
+
+if (player_direction &lt; 67.5 and player_direction &gt; 22.5){
+    //shoot at a 45 degree angle to the right
+    image_xscale = 1;
+    bullet = instance_create(x-200,y-200, obj_boss_throw);
+    bullet.direction += 45;
+} else if (player_direction &lt; 22.5 and player_direction &gt; 0){
+    //shoot right
+    image_xscale = 1;
+    bullet = instance_create(x-200,y-200, obj_boss_throw);
+    bullet.direction = 0
+} else if (player_direction &gt;270 and player_direction &lt;= 359){
+    //shoot right
+    image_xscale = 1;
+    bullet = instance_create(x-200,y-200, obj_boss_throw);
+    bullet.direction = 0
+} else if (player_direction &lt; 270 and player_direction &gt;157.5) {
+    //shoot left
+    image_xscale = -1;
+    bullet = instance_create(x-85,y, obj_boss_throw);
+    bullet.direction = 180;
+} else if (player_direction &lt; 157.5 and player_direction &gt; 112.5){
+    //shoot at a 45 degree angle to the left
+    image_xscale = -1;
+    bullet = instance_create(x-85,y, obj_boss_throw);
+    bullet.direction = 135;
+}
+}
+*/
 </string>
           </argument>
         </arguments>

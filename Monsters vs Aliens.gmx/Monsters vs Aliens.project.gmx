@@ -79,6 +79,11 @@
       <sprites name="TurretMan">
         <sprite>sprites\sprt_turretman_arm</sprite>
         <sprite>sprites\sprt_turretman_body</sprite>
+        <sprite>sprites\sprt_turretman_body_right</sprite>
+        <sprite>sprites\sprt_thrown_turret</sprite>
+        <sprite>sprites\sprt_thrown_turret_right</sprite>
+        <sprite>sprites\sprt_turretman_after_throw</sprite>
+        <sprite>sprites\sprt_turretman_after_throw_right</sprite>
       </sprites>
     </sprites>
     <sprites name="Monsters">
@@ -115,7 +120,7 @@
     </sprites>
     <sprites name="Bosses">
       <sprite>sprites\sprt_boss_body</sprite>
-      <sprite>sprites\sprt_boss_arm_01</sprite>
+      <sprite>sprites\sprt_boss_throw</sprite>
       <sprite>sprites\sprt_boss_arm_02</sprite>
     </sprites>
     <sprites name="Special Abilities">
@@ -126,6 +131,7 @@
       <sprite>sprites\sprt_enemy_bullet</sprite>
       <sprite>sprites\sprt_ufo_bullet</sprite>
       <sprite>sprites\sprt_tank_bullet</sprite>
+      <sprite>sprites\sprt_turret_bullet</sprite>
       <sprite>sprites\sprt_bullet_chargeShot</sprite>
     </sprites>
     <sprites name="Meters">
@@ -185,6 +191,9 @@
       <objects name="TurretMan">
         <object>objects\obj_turretman_arm</object>
         <object>objects\obj_turretman_body</object>
+        <object>objects\obj_turretman_body_right</object>
+        <object>objects\obj_thrown_turret</object>
+        <object>objects\obj_thrown_turret_right</object>
       </objects>
     </objects>
     <objects name="Monsters">
@@ -192,6 +201,7 @@
     </objects>
     <objects name="Bosses">
       <object>objects\obj_boss_1_body</object>
+      <object>objects\obj_boss_throw</object>
     </objects>
     <objects name="Bullets">
       <object>objects\obj_bullet</object>
@@ -199,6 +209,7 @@
       <object>objects\obj_enemy_bullet</object>
       <object>objects\obj_tank_bullet</object>
       <object>objects\obj_ufo_bullet</object>
+      <object>objects\obj_turret_bullet</object>
     </objects>
     <objects name="Meters">
       <objects name="Health">
@@ -225,8 +236,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_mars_test</room>
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_1</room>
     <room>rooms\rm_test_2</room>
   </rooms>

@@ -104,7 +104,7 @@ instance_deactivate_object(obj_tank_body)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>walking = true;
+            <string>//walking = true;
 </string>
           </argument>
         </arguments>
@@ -149,17 +149,17 @@ if (place_meeting(x,y+vsp,obj_ground_collision)){
 y += vsp;
 
 //----Move Toward Player----//
-if (walking == true) {
-    mp_potential_step (obj_test_body.x, obj_test_body.y, 100, false);
-    walking = false;
-    alarm[0] = 45;
-}
+//if (walking == true) {
+    mp_potential_step (obj_test_body.x, obj_test_body.y, 3, false);
+   // walking = false;
+    //alarm[0] = 45;
+//}
 
 //----Moving Sound----//
 if (walking_sound == true){
     audio_play_sound(snd_tank_walk, 1, false);
     walking_sound = false;
-    alarm[1] = 45;
+    alarm[1] = 30;
 }
 
 

@@ -29,7 +29,35 @@
 grav = 0.45;
 hsp = 0;
 vsp = 0;
+movespeed = 10;
+turret_count = 0;
+//global.turret_exists = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>    instance_create(x-60,y-20,obj_thrown_turret);
+    sprite_index = sprt_turretman_after_throw;
 
+    //global.turret_exists = true;
 </string>
           </argument>
         </arguments>
@@ -52,7 +80,35 @@ vsp = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>//----Movement and Collision----//
+//----movement----//
+hsp = movespeed;
+if (vsp &lt; 10) vsp += grav;
+
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+}
+
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
+//----Throw Turret----//
+if (turret_count == 0){
+    sprite_index = sprt_turretman_body;
+    alarm [0] = 8;
+    turret_count = 1;
+}
+</string>
           </argument>
         </arguments>
       </action>

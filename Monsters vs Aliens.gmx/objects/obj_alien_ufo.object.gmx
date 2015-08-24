@@ -3,7 +3,7 @@
   <spriteName>sprt_alien_ufo</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-3</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -58,8 +58,11 @@ instance_deactivate_object(obj_alien_ufo)
             <kind>1</kind>
             <string>mp_potential_step (obj_test_body.x, obj_test_body.y-375, 7.5, false);
 
-if (random_range (1, 100) &lt;=2.5){
-    instance_create(x,y, obj_ufo_bullet);
+if (random_range (1, 100) &lt;=1.7){
+    instance_create(x+56,y+72, obj_ufo_bullet);
+}
+if (random_range (1, 100) &lt;=1.7){
+    instance_create(x-56,y+72, obj_ufo_bullet);
 }
 </string>
           </argument>
