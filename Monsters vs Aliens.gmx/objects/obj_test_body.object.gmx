@@ -90,8 +90,28 @@ global.key_crouch = keyboard_check_pressed(vk_shift);
 global.key_stand = keyboard_check_released(vk_shift);
 mouse_direction = point_direction(x,y,mouse_x,mouse_y);
 
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+    if (audio_is_playing(snd_run)){
+        audio_stop_sound(snd_run);
+    }
+}
+x += hsp;
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
 //----movement----//
-move = -global.key_left + global.key_right;
+move = -global.key_left + global.key_right; 
 hsp = move * movespeed;
 if (vsp &lt; 10) vsp += grav;
 //walking sound
@@ -118,6 +138,7 @@ if (place_meeting(x,y+1,obj_ground_collision)) {
 //double jump
 if (global.key_jump) and (jumps &gt; 0) {
     audio_play_sound(snd_jump, 1, false);
+    //sprite_index = sprt_drac_jump_aim_straight;
     jumps -=1;
     vsp = -jumpspeed;
 }
@@ -134,29 +155,6 @@ if (global.key_stand){
     movespeed = 12;
     jumpspeed = 15;
 }
-
-
-//----horizontal collision-----//
-if (place_meeting(x+hsp,y,obj_ground_collision)){
-    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-        x += sign(hsp);
-    }
-    hsp = 0;
-    if (audio_is_playing(snd_run)){
-        audio_stop_sound(snd_run);
-    }
-}
-x += hsp;
-
-
-//----vertical collision----//
-if (place_meeting(x,y+vsp,obj_ground_collision)){
-    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-        y += sign(vsp);
-    }
-    vsp = 0;
-}
-y += vsp;
 
 
 //----Player Shooting &amp;&amp; Direction----//
@@ -207,18 +205,26 @@ if (room == rm_lvl_mars){
 
 //----Image Angles and Sprite Changes----//
 //image x scale
-if (move == 1){
+/*if (move == 1){
     image_xscale = 1;
     //straight up
-    if (mouse_direction &lt; 112.5 and mouse_direction &gt; 67.5) {
-        sprite_index = sprt_drac_run_aim_straight
+    if (global.key_right and mouse_direction &lt; 112.5 and mouse_direction &gt; 67.5) {
+        sprite_index = sprt_drac_run_aim_up
+    } else if (global.key_right and mouse_direction &lt; 67.5 and mouse_direction &gt; 22.5){
+        sprite_index = sprt_drac_run_aim_45;
+    } else if (global.key_right and mouse_direction &lt; 22.5 and mouse_direciton &gt; 270){
+        sprite_index = sprt_drac_run_aim_straight;
     }
 }
 if (move == -1){
     image_xscale = -1;
     //straight up
-    if (mouse_direction &lt; 112.5 and mouse_direction &gt; 67.5) {
-        sprite_index = sprt_drac_run_aim_straight
+    if (global.key_left and mouse_direction &lt; 112.5 and mouse_direction &gt; 67.5) {
+        sprite_index = sprt_drac_run_aim_up
+    } else if (global.key_left and mouse_direction &lt; 157.5 and mouse_direction &gt; 112.5){
+        sprite_index = sprt_drac_run_aim_45;
+    } else if (global.key_left and mouse_direction &lt; 270 and mouse_direction &gt; 157.5){
+        sprite_index = sprt_drac_run_aim_straight;
     }
 }
 if (move == 0) {

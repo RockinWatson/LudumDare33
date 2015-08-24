@@ -70,6 +70,7 @@
       <sprites name="Shooter">
         <sprite>sprites\sprt_alien_shooter_body</sprite>
         <sprite>sprites\sprt_alien_shooter_arm</sprite>
+        <sprite>sprites\sprt_alien_shooter_running</sprite>
       </sprites>
       <sprites name="Tank">
         <sprite>sprites\sprt_tank_arm</sprite>
@@ -98,6 +99,11 @@
           <sprite>sprites\sprt_drac_crouch_aim_straight</sprite>
           <sprite>sprites\sprt_drac_crouch_aim_up</sprite>
           <sprite>sprites\sprt_drac_crouch_aim_45</sprite>
+        </sprites>
+        <sprites name="Jump">
+          <sprite>sprites\sprt_drac_jump_aim_straight</sprite>
+          <sprite>sprites\sprt_drac_jump_aim_up</sprite>
+          <sprite>sprites\sprt_drac_jump_45</sprite>
         </sprites>
       </sprites>
     </sprites>
@@ -219,9 +225,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_mars_test</room>
     <room>rooms\rm_test_1</room>
-    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>
