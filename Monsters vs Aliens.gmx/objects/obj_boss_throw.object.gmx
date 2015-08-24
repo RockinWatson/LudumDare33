@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed = 30;
+            <string>speed = 25;
 direction=point_direction(x,y,obj_test_body.x, obj_test_body.y);
 </string>
           </argument>

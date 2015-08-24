@@ -56,7 +56,7 @@ instance_deactivate_object(obj_alien_ufo)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>mp_potential_step (obj_test_body.x, obj_test_body.y-375, 7.5, false);
+            <string>mp_potential_step (obj_test_body.x, obj_test_body.y-320, 6, false);
 
 if (random_range (1, 100) &lt;=1.7){
     instance_create(x+56,y+72, obj_ufo_bullet);

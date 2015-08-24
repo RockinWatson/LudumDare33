@@ -28,7 +28,7 @@
             <string>//----Growl----//
 audio_play_sound(snd_boss_growl, 5, false);
 audio_stop_sound(music_level_1);
-audio_play_sound(music_level_2, 5, true);
+audio_play_sound(music_boss_fight, 5, true);
 
 
 //----Destroy Self----//
