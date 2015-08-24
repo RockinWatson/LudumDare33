@@ -43,6 +43,10 @@
     <sounds name="Bosses">
       <sounds name="Combat">
         <sound>sound\snd_boss_shoot</sound>
+        <sound>sound\snd_boss_burp</sound>
+        <sound>sound\snd_boss_death</sound>
+        <sound>sound\snd_boss_growl</sound>
+        <sound>sound\snd_boss_hit</sound>
       </sounds>
     </sounds>
     <sounds name="Music">
@@ -136,6 +140,8 @@
     </sprites>
     <sprites name="Collision">
       <sprite>sprites\sprt_ground</sprite>
+      <sprite>sprites\spr_activate_boss</sprite>
+      <sprite>sprites\spr_activate_boss_sound</sprite>
     </sprites>
     <sprites name="Pickups">
       <sprite>sprites\sprt_pickup_charge</sprite>
@@ -198,6 +204,8 @@
     </objects>
     <objects name="Collision">
       <object>objects\obj_ground_collision</object>
+      <object>objects\obj_activate_boss</object>
+      <object>objects\obj_activate_boss_sound</object>
     </objects>
     <objects name="Controllers">
       <object>objects\obj_controller_mars</object>
@@ -211,8 +219,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl_mars</room>
+    <room>rooms\rm_mars_test</room>
     <room>rooms\rm_test_1</room>
+    <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_test_2</room>
   </rooms>
   <help>
