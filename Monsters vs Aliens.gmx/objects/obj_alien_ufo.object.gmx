@@ -31,6 +31,9 @@ hsp = 0;
 vsp = 0;
 movespeed = 10;
 ufo_hp = 3;
+
+//----Deactivate----//
+instance_deactivate_object(obj_alien_ufo)
 </string>
           </argument>
         </arguments>

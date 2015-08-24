@@ -25,12 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//----Create Event----
+            <string>//----Create Event----//
 grav = 0.45;
 hsp = 0;
 vsp = 0;
 movespeed = 10;
 shooter_hp = 2;
+
+//----Deactivate----//
+instance_deactivate_object(obj_alien_shooter_body)
 </string>
           </argument>
         </arguments>
@@ -112,7 +115,7 @@ alarm[2] = 40;
 //----Shooting----//
 player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
 
-if (random_range (1, 100) &lt;=2){
+if (random_range (1, 100) &lt;=4){
 
 if (player_direction &lt; 112.5 and player_direction &gt; 67.5){
     //shoot straight up

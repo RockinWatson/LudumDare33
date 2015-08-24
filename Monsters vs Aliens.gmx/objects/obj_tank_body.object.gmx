@@ -33,6 +33,9 @@ movespeed = 10;
 tank_hp = 5;
 walking_sound = true;
 walking = true;
+
+//----Deactivate----//
+instance_deactivate_object(obj_tank_body)
 </string>
           </argument>
         </arguments>
@@ -170,7 +173,7 @@ alarm[2] = 40;
 //----Shooting----//
 //player_direction = point_direction(x,y,obj_test_body.x, obj_test_body.y);
 
-if (random_range (1, 100) &lt;=1.5){
+if (random_range (1, 100) &lt;=3){
     bullet = instance_create(x,y-100, obj_tank_bullet)
 
 /*

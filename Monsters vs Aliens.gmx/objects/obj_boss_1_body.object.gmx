@@ -7,7 +7,140 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//----Create Event----
+grav = 0.45;
+hsp = 0;
+vsp = 0;
+movespeed = 3;
+boss_1_hp = 70;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//----movement----//
+hsp = movespeed;
+if (vsp &lt; 10) vsp += grav;
+
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+}
+
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
+//----Move To Player----//
+if distance_to_point (obj_test_body.x, obj_test_body.y) &gt; 200 {
+    mp_potential_step (obj_test_body.x, obj_test_body.y, 2, false);
+}
+
+
+//----Attack Player----//
+if (place_meeting(x,y,obj_test_body) and global.player_damage==false){
+audio_play_sound(snd_self_hit, 1, false);
+global.player_damage=true;
+alarm[1] = 40;
+}
+
+//----Random Sound When Hit----//
+random_boss_hit_sound = random_range(1, 15);
+
+//----Random Boss Burp----//
+random_boss_burp = random_range(1, 300);
+
+if (random_boss_burp &lt;= 2.2){
+    audio_play_sound(snd_boss_burp, 5, false);
+    instance_create(obj_boss_1_body.x+200,obj_boss_1_body.y,obj_alien_ufo);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bullet">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//----Boss Hit----//
+boss_1_hp -= 1;
+audio_play_sound(snd_enemy_hit, 0, false);
+
+if (random_boss_hit_sound &lt;3){
+    audio_play_sound(snd_boss_hit, 1, false);
+}
+
+//----Boss Death----//
+if (boss_1_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_boss_death, 1, false);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
