@@ -51,24 +51,9 @@ vsp = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (vsp &lt; 10) vsp += grav;
-
-//----horizontal collision-----//
-if (place_meeting(x+hsp,y,obj_ground_collision)){
-    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-        x += sign(hsp);
-    }
-    hsp = 0;
-}
-
-//----vertical collision----//
-if (place_meeting(x,y+vsp,obj_ground_collision)){
-    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-        y += sign(vsp);
-    }
-    vsp = 0;
-}
-y += vsp;
+            <string>if (place_free(x, y+50)){
+mp_potential_step(x,y+30, 5, false);
+} else mp_potential_step(x,y-100, 5, false);
 </string>
           </argument>
         </arguments>
