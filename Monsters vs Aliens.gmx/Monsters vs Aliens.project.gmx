@@ -79,7 +79,23 @@
     <sprites name="Monsters">
       <sprite>sprites\sprt_test_body</sprite>
       <sprite>sprites\sprt_monster_crouch</sprite>
-      <sprite>sprites\sprite35</sprite>
+      <sprites name="Dracula">
+        <sprites name="Stand">
+          <sprite>sprites\sprt_drac_stand_aim_straight</sprite>
+          <sprite>sprites\sprt_drac_stand_aim_up</sprite>
+          <sprite>sprites\sprt_drac_stand_aim_45</sprite>
+        </sprites>
+        <sprites name="Run">
+          <sprite>sprites\sprt_drac_run_aim_straight</sprite>
+          <sprite>sprites\sprt_drac_run_aim_up</sprite>
+          <sprite>sprites\sprt_drac_run_aim_45</sprite>
+        </sprites>
+        <sprites name="Crouch">
+          <sprite>sprites\sprt_drac_crouch_aim_straight</sprite>
+          <sprite>sprites\sprt_drac_crouch_aim_up</sprite>
+          <sprite>sprites\sprt_drac_crouch_aim_45</sprite>
+        </sprites>
+      </sprites>
     </sprites>
     <sprites name="Backgrounds">
       <sprite>sprites\sprt_bg_1</sprite>
