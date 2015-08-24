@@ -64,8 +64,7 @@
     <instance objName="obj_ground_collision" x="4798" y="1344" name="inst_64478674" locked="0" code="" scaleX="1" scaleY="4.13333320617676" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="5740" y="886" name="inst_DFDA85EF" locked="0" code="" scaleX="1.01458334922791" scaleY="3.67000007629395" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="1108" y="1000" name="inst_4AE31D22" locked="0" code="" scaleX="1.89166665077209" scaleY="0.200000002980232" colour="4294967295" rotation="0"/>
-    <instance objName="obj_test_body" x="596" y="2898" name="inst_4F2E0796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_boss_1_body" x="420" y="684" name="inst_5EC1B9F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_test_body" x="590" y="2870" name="inst_4F2E0796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="3276" y="2816" name="inst_EF3BD9E3" locked="0" code="" scaleX="0.100000001490116" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="3620" y="2870" name="inst_A2264BB1" locked="0" code="" scaleX="0.278124988079071" scaleY="1.23333334922791" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground_collision" x="3362" y="-84" name="inst_06D83CAD" locked="0" code="" scaleX="4.60312509536743" scaleY="2.67000007629395" colour="4294967295" rotation="0"/>

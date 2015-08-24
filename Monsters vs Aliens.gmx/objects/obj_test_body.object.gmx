@@ -86,699 +86,108 @@ global.key_right = keyboard_check(ord('D'));
 global.key_left = keyboard_check(ord('A'));
 global.key_jump = keyboard_check_pressed(vk_space);
 global.key_fire = mouse_check_button_pressed(mb_left);
+global.key_up = keyboard_check(ord('W'));
 global.key_crouch = keyboard_check_pressed(vk_shift);
 global.key_stand = keyboard_check_released(vk_shift);
 mouse_direction = point_direction(x,y,mouse_x,mouse_y);
+grounded = place_meeting(x,y+1,obj_ground_collision);
 
-//---------------------------------------------------------------------//
+//----movement----//
+move = -global.key_left + global.key_right; 
+hsp = move * movespeed;
+if (vsp &lt; 10) vsp += grav;
+//----horizontal collision-----//
+if (place_meeting(x+hsp,y,obj_ground_collision)){
+    while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
+        x += sign(hsp);
+    }
+    hsp = 0;
+    if (audio_is_playing(snd_run)){
+        audio_stop_sound(snd_run);
+    }
+}
+x += hsp;
+//----vertical collision----//
+if (place_meeting(x,y+vsp,obj_ground_collision)){
+    while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
 
-//----Mouse up right----//
+//walking sound
+if ((move or -move) and walking_sound == true){
+    audio_play_sound(snd_run, 1, false);
+    walking_sound = false;
+    alarm[0] = 15;
+}
+//stop running_sound if in Air
+if (!grounded and audio_is_playing (snd_run)){
+    audio_stop_sound(snd_run);    
+}
 
-//---------------------------------------------------------------------//
-if (mouse_direction &lt; 90 and mouse_direction &gt; 67.5) {
-    image_xscale = 1;
-    sprite_index = sprt_drac_stand_aim_up;
-    
-    //Crouching
-    if (global.key_crouch and sprite_index = sprt_drac_stand_aim_up) {
-        sprite_index = sprt_drac_crouch_aim_up;
-        movespeed =0;
-        jumpspeed =0;
-    } else if (global.key_stand){
-        sprite_index = sprt_drac_stand_aim_up;
-        movespeed = 12;
-        jumpspeed = 15;
+//----Jump-----//
+//reset jump
+if (place_meeting(x,y+1,obj_ground_collision)) {
+    jumps = jumpsmax;
+    if (jumps &lt;=1){
+        audio_play_sound(snd_land, 10, false);
     }
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
+}
+//Jump Mechanics
+if (global.key_jump) and (jumps &gt; 0) {
+    audio_play_sound(snd_jump, 1, false);
+    jumps -=1;
+    vsp = -jumpspeed;
+}
+
+//Animate
+if (move != 0){
+    image_xscale = move;
+}
+if (grounded){ 
+    if (move != 0){
+        sprite_index = sprt_drac_run_aim_straight;
+    }else if (move !=0 and global.key_up){
+        sprite_index = sprt_drac_run_aim_up;
+    } else {
+        sprite_index = sprt_drac_stand_aim_straight;
     }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
+}else{
+    if (vsp &lt; 0) {
+        sprite_index = sprt_drac_jump_aim_straight;
+    } else if (vsp &lt; 0 and global.key_up){
         sprite_index = sprt_drac_jump_aim_up;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //shoot straight up
-    if (global.key_fire){
-        bullet = instance_create(x,y-80, obj_bullet);
-        audio_play_sound(snd_laser, 1, false);
-        bullet.direction += 90;
-    }
-    
-    //run animation
-    if (global.key_left){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_up;
-    } else if (global.key_right) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_up;
-    } else if (move == 0){
-        image_xscale = 1;
-        sprite_index = sprt_drac_stand_aim_up;
     }
 }
-//---------------------------------------------------------------------//
-
-//----Mouse 45 degree right----//
-
-//---------------------------------------------------------------------//
-if (mouse_direction &lt; 67.5 and mouse_direction &gt; 22.5){
-    image_xscale = 1;
-    sprite_index = sprt_drac_stand_aim_45;
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_45;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = 1;
-        sprite_index = sprt_drac_stand_aim_45;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot at a 45 degree angle right
-    if (global.key_fire){
-        bullet = instance_create(x,y, obj_bullet);
-        audio_play_sound(snd_laser, 1, false);
-        bullet.direction += 45;
-    }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_45;
-    } else if (global.key_right){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_45
-    }
-}
-
-//---------------------------------------------------------------------//
-
-//----Mouse straight right----//
-
-//---------------------------------------------------------------------//
-if ((mouse_direction &lt; 22.5 and mouse_direction &gt; 0)){
-    image_xscale = 1;
-    sprite_index = sprt_drac_stand_aim_straight;
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_aim_straight;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = 1;
-        sprite_index = sprt_drac_stand_aim_straight;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot right when mouse is inbetween 22.5 and 0
-    if (global.key_fire){
-        bullet = instance_create(x,y, obj_bullet);
-        audio_play_sound(snd_laser, 1, false);
-        bullet.direction = 0;
-    }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_straight;
-    } else if (global.key_right){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_straight;
-    }
-
-//---------------------------------------------------------------------//
-
-//----Mouse right straight rest of Radius----//
-
-//---------------------------------------------------------------------//
-} else if ((mouse_direction &gt; 270 and mouse_direction &lt;= 359)){
-    image_xscale = 1;
-    sprite_index = sprt_drac_stand_aim_straight;
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_aim_straight;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = 1;
-        sprite_index = sprt_drac_stand_aim_straight;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot right when mouse is inbetween 270 and 359
-    if (global.key_fire){
-        bullet = instance_create(x,y, obj_bullet);
-        audio_play_sound(snd_laser, 1, false);
-        bullet.direction = 0;
-    }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_straight;
-    } else if (global.key_right){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_straight;
-    }
-}
-
-//---------------------------------------------------------------------//
-
-//----Mouse straight left----//
-
-//---------------------------------------------------------------------//
-if ((mouse_direction &lt; 270 and mouse_direction &gt; 157.5)){
-    image_xscale = -1;
+if (global.key_crouch) {
+    sprite_index = sprt_drac_crouch_aim_straight;
+    movespeed =0;
+    jumpspeed =0;
+} else if(global.key_crouch and global.key_left){
+    sprite_index = sprt_drac_crouch_aim_straight;
+} else if (global.key_stand){
     sprite_index = sprt_drac_stand_aim_straight
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_aim_straight;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_straight;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = -1;
-        sprite_index = sprt_drac_stand_aim_straight;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot left when mouse is inbetween 270 and 157.5
+    movespeed = 12;
+    jumpspeed = 15;
+}
+
+//Shooting
+if image_xscale == -1 {
     if (global.key_fire){
         bullet = instance_create(x,y, obj_bullet);
         audio_play_sound(snd_laser, 1, false);
         bullet.direction = 180;
     }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_straight;
-    } else if (global.key_right){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_straight;
-    }
-}
-
-//---------------------------------------------------------------------//
-
-//----Mouse 45 degree left----//
-
-//---------------------------------------------------------------------//
-if ((mouse_direction &lt; 157.5 and mouse_direction &gt; 112.5)){
-    image_xscale =-1;
-    sprite_index = sprt_drac_stand_aim_45;
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_45;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_45;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = -1;
-        sprite_index = sprt_drac_stand_aim_45;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot 45 angle left when mouse is inbetween 157.5 and 112.5
+} else {
     if (global.key_fire){
         bullet = instance_create(x,y, obj_bullet);
         audio_play_sound(snd_laser, 1, false);
-        bullet.direction = 135;
-    }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_45;
-    } else if (global.key_right){
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_45;
+        bullet.direction = 0;
     }
 }
 
-//---------------------------------------------------------------------//
-
-//----Mouse Look Up Left----//
-
-//---------------------------------------------------------------------//
-if (mouse_direction &lt; 112.5 and mouse_direction &gt; 90) {
-    image_xscale = -1;
-    sprite_index = sprt_drac_stand_aim_up;
-    
-    //----movement----//
-    move = -global.key_left + global.key_right; 
-    hsp = move * movespeed;
-    if (vsp &lt; 10) vsp += grav;
-    
-    //----horizontal collision-----//
-    if (place_meeting(x+hsp,y,obj_ground_collision)){
-        while(!place_meeting(x+sign(hsp),y,obj_ground_collision)){
-            x += sign(hsp);
-        }
-        hsp = 0;
-        if (audio_is_playing(snd_run)){
-            audio_stop_sound(snd_run);
-        }
-    }
-    x += hsp;
-    //----vertical collision----//
-    if (place_meeting(x,y+vsp,obj_ground_collision)){
-        while(!place_meeting(x,y+sign(vsp),obj_ground_collision)){
-            y += sign(vsp);
-        }
-        vsp = 0;
-    }
-    y += vsp;
-    
-    //walking sound
-    if ((move or -move) and walking_sound == true){
-        audio_play_sound(snd_run, 1, false);
-        walking_sound = false;
-        alarm[0] = 15;
-    }
-    //stop running_sound if in Air
-    if (!place_meeting (x,y+1,obj_ground_collision) and audio_is_playing (snd_run)){
-        audio_stop_sound(snd_run);    
-    }
-    
-    //----Jump-----//
-    if (place_meeting(x,y+1,obj_ground_collision)) {
-        jumps = jumpsmax;
-        if (jumps &lt;=1){
-            audio_play_sound(snd_land, 10, false);
-        }
-    }
-    //double jump
-    if (global.key_jump) and (jumps &gt; 0) {
-        audio_play_sound(snd_jump, 1, false);
-        sprite_index = sprt_drac_jump_aim_up;
-        jumps -=1;
-        vsp = -jumpspeed;
-    }
-    
-    //Crouching
-    if (global.key_crouch) and place_meeting(x,y+1,obj_ground_collision) {
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_up;
-        movespeed =0;
-        jumpspeed =0;
-    }else if ((global.key_left and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = -1;
-        sprite_index = sprt_drac_crouch_aim_up;
-        movespeed =0;
-        jumpspeed =0;
-    }else if  ((global.key_right and global.key_crouch) and place_meeting(x,y+1,obj_ground_collision)){
-        image_xscale = 1;
-        sprite_index = sprt_drac_crouch_aim_up;
-        movespeed =0;
-        jumpspeed =0;
-    }
-    //Stand
-    if (global.key_stand){
-        image_xscale = -1;
-        sprite_index = sprt_drac_stand_aim_up;
-        movespeed = 12;
-        jumpspeed = 15;
-    }
-    
-    //shoot straight up
-    if (global.key_fire){
-        bullet = instance_create(x,y-80, obj_bullet);
-        audio_play_sound(snd_laser, 1, false);
-        bullet.direction += 90;
-    }
-    if (global.key_left){
-        image_xscale = -1;
-        sprite_index = sprt_drac_run_aim_up;
-    } else if (global.key_right) {
-        image_xscale = 1;
-        sprite_index = sprt_drac_run_aim_up;
-    }
-}
-//---------------------------------------------------------------------//
 
 //----Parallax Background----//
 if (room == rm_lvl_mars){
@@ -792,6 +201,7 @@ if (room == rm_lvl_mars){
     background_y[3] = view_yview[0]/3;
     background_y[4] = view_yview[0]/4;
 }
+
 </string>
           </argument>
         </arguments>
