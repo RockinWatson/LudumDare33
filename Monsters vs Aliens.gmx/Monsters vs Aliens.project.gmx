@@ -63,6 +63,7 @@
   <sprites name="sprites">
     <sprites name="Aliens">
       <sprite>sprites\sprt_alien_ufo</sprite>
+      <sprite>sprites\sprt_alien_death</sprite>
       <sprites name="Melee">
         <sprite>sprites\sprt_alien_melee_body</sprite>
         <sprite>sprites\sprt_alien_melee_arm</sprite>
@@ -159,6 +160,46 @@
       <sprite>sprites\sprt_pickup_charge</sprite>
       <sprite>sprites\sprt_pickup_health</sprite>
     </sprites>
+    <sprites name="Menu">
+      <sprite>sprites\sprt_menu_star1</sprite>
+      <sprite>sprites\sprt_menu_star2</sprite>
+      <sprite>sprites\sprt_menu_choose_champion</sprite>
+      <sprite>sprites\sprt_menu_choose_arena</sprite>
+      <sprite>sprites\sprt_menu_gameplay_info</sprite>
+      <sprite>sprites\sprt_menu_story</sprite>
+      <sprite>sprites\sprt_title</sprite>
+      <sprite>sprites\sprt_twitter_info</sprite>
+      <sprite>sprites\sprt_you_win</sprite>
+      <sprites name="Menu_Select">
+        <sprite>sprites\sprt_start_game</sprite>
+        <sprite>sprites\sprt_menu_restart</sprite>
+        <sprite>sprites\sprt_menu_exit</sprite>
+        <sprites name="Drac">
+          <sprite>sprites\sprt_menu_drac</sprite>
+          <sprite>sprites\sprt_menu_drac_selected</sprite>
+        </sprites>
+        <sprites name="Frank">
+          <sprite>sprites\sprt_menu_frank</sprite>
+          <sprite>sprites\sprt_menu_frank_selected</sprite>
+        </sprites>
+        <sprites name="Mum">
+          <sprite>sprites\sprt_menu_mum</sprite>
+          <sprite>sprites\sprt_menu_mum_selected</sprite>
+        </sprites>
+        <sprites name="Planet 1">
+          <sprite>sprites\sprt_planet_1</sprite>
+          <sprite>sprites\sprt_planet_1_selected</sprite>
+        </sprites>
+        <sprites name="Planet 2">
+          <sprite>sprites\sprt_planet_2</sprite>
+          <sprite>sprites\sprt_planet_2_selected</sprite>
+        </sprites>
+        <sprites name="Planet 3">
+          <sprite>sprites\sprt_planet_3</sprite>
+          <sprite>sprites\sprt_planet_3_selecetd</sprite>
+        </sprites>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_test_1</background>
@@ -173,6 +214,11 @@
       <background>background\bg_mars_plx_3</background>
       <background>background\bg_mars_plx_4</background>
       <background>background\bg_mars_platforms</background>
+    </backgrounds>
+    <backgrounds name="Menu">
+      <background>background\bg_title_menu</background>
+      <background>background\bg_main_menu</background>
+      <background>background\bg_game_over</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths"/>
@@ -234,12 +280,23 @@
       <object>objects\obj_pickup_health</object>
       <object>objects\obj_pickup_charge</object>
     </objects>
+    <objects name="Menu">
+      <objects name="Select">
+        <object>objects\obj_choose_champion</object>
+        <object>objects\obj_choose_arena</object>
+      </objects>
+      <object>objects\obj_menu_star1</object>
+      <object>objects\obj_menu_star2</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_lvl_mars</room>
     <room>rooms\rm_mars_test</room>
     <room>rooms\rm_test_1</room>
     <room>rooms\rm_test_2</room>
+    <rooms name="Main Game">
+      <room>rooms\rm_title</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
