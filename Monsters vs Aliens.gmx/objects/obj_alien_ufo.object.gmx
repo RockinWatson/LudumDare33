@@ -97,6 +97,7 @@ if (ufo_hp &lt;= 0){
         else if (global.random_item_drop &lt; 3){
             instance_create(self.x,self.y,obj_pickup_charge)
         }
+        instance_create (x, y-50, obj_alien_death);
 }
 </string>
           </argument>
@@ -131,6 +132,7 @@ if (ufo_hp &lt;= 0){
         else if (global.random_item_drop &lt; 3){
             instance_create(self.x,self.y,obj_pickup_charge)
         }
+    instance_create (x, y-50, obj_alien_death);
 }
 </string>
           </argument>

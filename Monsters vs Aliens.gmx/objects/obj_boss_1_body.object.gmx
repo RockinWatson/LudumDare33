@@ -37,6 +37,29 @@ boss_jump = false;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto_next();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="2">
       <action>
         <libid>1</libid>
@@ -195,6 +218,35 @@ if (random_boss_hit_sound &lt;3){
 if (boss_1_hp &lt;= 0){
     instance_destroy();
     audio_play_sound(snd_boss_death, 1, false);
+    instance_create (x, y-75, obj_alien_death);
+    instance_create (x, y, obj_alien_death);
+    instance_create (x+100, y+50, obj_alien_death);
+    instance_create (x-100, y-20, obj_alien_death);
+    instance_create (x-175, y-70, obj_alien_death);
+    instance_create (x+155, y+60, obj_alien_death);
+    instance_create (x+200, y+45, obj_alien_death);
+    instance_create (x-175, y+10, obj_alien_death);
+    instance_create (x, y+15, obj_alien_death);
+    instance_create (x-15, y-180, obj_alien_death);
+    instance_create (x, y+60, obj_alien_death);
+    instance_create (x+175, y-200, obj_alien_death);
+    instance_create (x+200, y-270, obj_alien_death);
+    instance_create (x+250, y-250, obj_alien_death);
+    instance_create (x+220, y-280, obj_alien_death);
+    instance_create (x+200, y, obj_alien_death);
+    instance_create (x+185, y-25, obj_alien_death);
+    instance_create (x+70, y+90, obj_alien_death);
+    instance_create (x-80, y+140, obj_alien_death);
+    instance_create (x-40, y+210, obj_alien_death);
+    instance_create (x+55, y+125, obj_alien_death);
+    instance_create (x+120, y+110, obj_alien_death);
+    instance_create (x+210, y+175, obj_alien_death);
+            audio_stop_sound(music_boss_fight);
+        alarm [5] = 90;
+    with (obj_alien_ufo){
+        instance_destroy();
+        instance_create (x, y-50, obj_alien_death);
+    }
 }
 
 </string>
@@ -231,6 +283,37 @@ if (random_boss_hit_sound &lt;3){
 if (boss_1_hp &lt;= 0){
     instance_destroy();
     audio_play_sound(snd_boss_death, 1, false);
+    instance_create (x, y-75, obj_alien_death);
+    instance_create (x, y, obj_alien_death);
+    instance_create (x+100, y+50, obj_alien_death);
+    instance_create (x-100, y-20, obj_alien_death);
+    instance_create (x-175, y-70, obj_alien_death);
+    instance_create (x+155, y+60, obj_alien_death);
+    instance_create (x+200, y+45, obj_alien_death);
+    instance_create (x-175, y+10, obj_alien_death);
+    instance_create (x, y+15, obj_alien_death);
+    instance_create (x-15, y-180, obj_alien_death);
+    instance_create (x, y+80, obj_alien_death);
+    instance_create (x+175, y-200, obj_alien_death);
+    instance_create (x+200, y-1800, obj_alien_death);
+    instance_create (x+250, y-250, obj_alien_death);
+    instance_create (x+220, y-280, obj_alien_death);
+    instance_create (x+200, y, obj_alien_death);
+    instance_create (x+185, y-25, obj_alien_death);
+    instance_create (x+70, y+90, obj_alien_death);
+    instance_create (x-80, y+140, obj_alien_death);
+    instance_create (x-40, y+210, obj_alien_death);
+    instance_create (x+55, y+125, obj_alien_death);
+    instance_create (x+55, y+125, obj_alien_death);
+    instance_create (x+120, y+110, obj_alien_death);
+    instance_create (x+210, y+175, obj_alien_death);
+        audio_stop_sound(music_boss_fight);
+        alarm [5] = 90;
+    with (obj_alien_ufo){
+        instance_destroy();
+        instance_create (x, y-50, obj_alien_death);
+
+    }
 }
 
 </string>

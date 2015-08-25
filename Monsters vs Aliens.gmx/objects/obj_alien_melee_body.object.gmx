@@ -30,6 +30,7 @@ grav = 0.45;
 hsp = 0;
 vsp = 0;
 movespeed = 10;
+melee_hp = 2;
 
 //----Deactivate----//
 instance_deactivate_object(obj_alien_melee_body)
@@ -167,12 +168,18 @@ alarm[1] = 40;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
-if (global.random_item_drop  &gt; 17){
-    instance_create(self.x,self.y,obj_pickup_health);
-}
-    else if (global.random_item_drop &lt; 3){
-    instance_create(self.x,self.y,obj_pickup_charge)
+            <string>melee_hp -= 2;
+audio_play_sound(snd_enemy_hit, 0, false);
+if (melee_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_enemy_death, 1, false);
+        if (global.random_item_drop  &gt; 17){
+            instance_create(self.x,self.y,obj_pickup_health);
+            }
+        else if (global.random_item_drop &lt; 3){
+            instance_create(self.x,self.y,obj_pickup_charge)
+        }
+    instance_create (x, y-50, obj_alien_death);
 }
 </string>
           </argument>
@@ -196,12 +203,18 @@ if (global.random_item_drop  &gt; 17){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
-if (global.random_item_drop  &gt; 17){
-    instance_create(self.x,self.y,obj_pickup_health);
-}
-    else if (global.random_item_drop &lt; 3){
-    instance_create(self.x,self.y,obj_pickup_charge)
+            <string>melee_hp -= 1;
+audio_play_sound(snd_enemy_hit, 0, false);
+if (melee_hp &lt;= 0){
+    instance_destroy();
+    audio_play_sound(snd_enemy_death, 1, false);
+        if (global.random_item_drop  &gt; 17){
+            instance_create(self.x,self.y,obj_pickup_health);
+            }
+        else if (global.random_item_drop &lt; 3){
+            instance_create(self.x,self.y,obj_pickup_charge)
+        }
+    instance_create (x, y-50, obj_alien_death);
 }
 </string>
           </argument>

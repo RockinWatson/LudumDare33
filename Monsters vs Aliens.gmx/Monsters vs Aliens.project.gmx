@@ -242,6 +242,7 @@
         <object>objects\obj_thrown_turret</object>
         <object>objects\obj_thrown_turret_right</object>
       </objects>
+      <object>objects\obj_alien_death</object>
     </objects>
     <objects name="Monsters">
       <object>objects\obj_test_body</object>

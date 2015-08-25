@@ -113,7 +113,7 @@ global.key_fire = mouse_check_button_pressed(mb_left);
 global.key_alt_fire = mouse_check_button_pressed(mb_right);
 global.key_up = keyboard_check(ord('W'));
 //global.key_crouch = keyboard_check_pressed(vk_shift);
-global.key_stand = keyboard_check_released(vk_shift);
+//global.key_stand = keyboard_check_released(vk_shift);
 mouse_direction = point_direction(x,y,mouse_x,mouse_y);
 grounded = place_meeting(x,y+1,obj_ground_collision);
 
@@ -186,7 +186,9 @@ if (grounded){
         sprite_index = sprt_drac_jump_aim_up;
     }
 }
-/*if (global.key_crouch) {
+
+/*
+if (global.key_crouch) {
     sprite_index = sprt_drac_crouch_aim_straight;
     movespeed =0;
     jumpspeed =0;
@@ -198,6 +200,7 @@ if (grounded){
     jumpspeed = 15;
 }
 */
+
 //Shooting
 if image_xscale == -1 {
     if (global.key_fire) and (canshoot = true){
@@ -247,28 +250,6 @@ if (room == rm_lvl_mars){
 }
 
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_alien_melee_body">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
